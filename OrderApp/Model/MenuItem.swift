@@ -1,20 +1,23 @@
-//
-//  MenuItem.swift
-//  OrderApp
-//
-//  Created by Juan Diego Ocampo on 10/20/21.
-//
 
 import Foundation
 
 struct MenuItem: Codable {
+    
+    static let priceFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "$"
+        
+        return formatter
+    }()
+    
     var id: Int
     var name: String
     var detailText: String
     var price: Double
     var category: String
     var imageURL: URL
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -23,4 +26,8 @@ struct MenuItem: Codable {
         case category
         case imageURL = "image_url"
     }
+}
+
+struct MenuItems: Codable {
+    let items: [MenuItem]
 }
